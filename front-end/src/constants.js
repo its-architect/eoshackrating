@@ -1,6 +1,7 @@
 export const ROUTES = {
     ROOT: '/',
-    RATING_LIST: '/link1',
+    USER_RATING: '/user_rating',
+    RATING_LIST: '/rating_list',
 };
 
 export const BASE_API =

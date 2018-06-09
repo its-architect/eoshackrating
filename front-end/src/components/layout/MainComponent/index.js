@@ -1,13 +1,13 @@
-import React, { PureComponent }  from 'react';
-import styles                    from './styles.scss';
-import { ROUTES }                from 'constants.js';
-import { Switch }                from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import styles from './styles.scss';
+import { ROUTES } from 'constants.js';
+import { Switch } from 'react-router-dom';
 
 import {
-    LandingComponent,
-    RatingComponent
-}                                                    from 'components/pages';
+    LandingComponent
+} from 'components/pages';
 import { RedirectRouteComponent } from 'components/shared';
+import { UserRatingContainer, RatingContainer } from 'containers/pages';
 
 class MainComponent extends PureComponent {
     render() {
@@ -23,7 +23,11 @@ class MainComponent extends PureComponent {
                     <RedirectRouteComponent
                         exact
                         path={ ROUTES.RATING_LIST }
-                        component={ RatingComponent }
+                        component={ RatingContainer }
+                    />
+                    <RedirectRouteComponent
+                        path={ ROUTES.USER_RATING }
+                        component={ UserRatingContainer }
                     />
 
                 </Switch>
@@ -32,7 +36,6 @@ class MainComponent extends PureComponent {
     }
 }
 
-MainComponent.propTypes = {
-};
+MainComponent.propTypes = {};
 
 export default MainComponent;

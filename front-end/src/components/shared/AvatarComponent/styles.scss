@@ -1,0 +1,4 @@
+.avatar {
+    @include image-round();
+    box-shadow: $shadow;
+}

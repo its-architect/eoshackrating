@@ -1,7 +1,9 @@
 import LandingComponent from './LandingComponent';
 import RatingComponent from './RatingComponent';
+import UserRatingComponent from './UserRatingComponent';
 
 export {
-    RatingComponent,
-    LandingComponent,
+  UserRatingComponent,
+  RatingComponent,
+  LandingComponent
 };
