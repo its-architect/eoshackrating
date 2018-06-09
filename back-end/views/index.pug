@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    p Login and password from Hubstaff:
+    form(action="/auth" method="get")
+        div
+            input(type="text" name="email")
+        div
+            input(type="password" name="password")
+        div
+            button(type="submit") Authorize
