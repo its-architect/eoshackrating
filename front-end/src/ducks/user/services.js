@@ -5,7 +5,7 @@ export default {
     /**
      * Service to request sign up user
      *
-     * @param {string} id
+     * @param {number} id
      */
     getUserRequest: ( id ) => (
         ajax.get(

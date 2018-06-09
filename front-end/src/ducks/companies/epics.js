@@ -4,7 +4,6 @@ import selectors from './selectors';
 import actions from './actions';
 import 'rxjs/add/operator/mergeMap';
 import services from './services';
-import * as mappers from './mappers';
 import * as sharedMappers from 'ducks/sharedMappers';
 import { of } from 'rxjs/observable/of';
 

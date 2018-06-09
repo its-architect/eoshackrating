@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import CompanyListItemComponent from './CompanyListItemComponent';
 import { GatherIcon } from 'assets/icons';
+import { SpinnerComponent } from 'components/shared';
 
 class CompanyRatingComponent extends PureComponent {
     state = {
@@ -34,27 +35,28 @@ class CompanyRatingComponent extends PureComponent {
     };
 
     render() {
-        const { companies } = this.props;
+        const { allIds, byId } = this.props;
         const { handleCompanyLeftToggle, handleCompanyRightToggle } = this;
         const { activeCompanyLeftIndex, activeCompanyRightIndex } = this.state;
 
-        const companyItemsLeft = companies.map(company => (
+        const companyItemsLeft = allIds.size === 0 ? <SpinnerComponent row /> : allIds.map(companyId => (
             <CompanyListItemComponent
-                key={ company.get('index') }
-                company={ company }
+                key={ companyId }
+                company={ byId.get(companyId) }
                 handleCompanyToggle={ handleCompanyLeftToggle }
                 activeCompanyIndex={ activeCompanyLeftIndex }
             />
         ));
 
-        const companyItemsRight = companies.map(company => (
+        const companyItemsRight = allIds.size === 0 ? <SpinnerComponent row /> : allIds.map(companyId => (
             <CompanyListItemComponent
-                key={ company.get('index') }
-                company={ company }
+                key={ companyId }
+                company={ byId.get(companyId) }
                 handleCompanyToggle={ handleCompanyRightToggle }
                 activeCompanyIndex={ activeCompanyRightIndex }
             />
         ));
+
 
         return (
             <div className={ styles.page }>
@@ -81,7 +83,8 @@ class CompanyRatingComponent extends PureComponent {
 }
 
 CompanyRatingComponent.propTypes = {
-    companies: ImmutablePropTypes.list.isRequired
+    allIds: ImmutablePropTypes.set.isRequired,
+    byId: ImmutablePropTypes.map.isRequired,
 };
 
 export default CompanyRatingComponent;

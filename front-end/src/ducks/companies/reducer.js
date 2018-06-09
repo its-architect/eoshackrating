@@ -15,8 +15,14 @@ export default ( state = initialState, action ) => {
             return state
                 .setIn([ 'status' ], Map({ isFetching: action.type }));
         case types.FETCH_COMPANIES_SUCCESS:
+            const companies = action.payload.reduce(
+                ( acc, item ) => acc.set(item.id, fromJS(item)),
+                Map()
+            );
 
             return state
+                .updateIn([ 'allIds' ], ids => ids.union(action.payload.map(item => item.id)))
+                .updateIn([ 'byId' ], byId => byId.merge(companies))
                 .setIn([ 'status' ], Map({ success: action.type }));
         case types.FETCH_COMPANIES_ERROR:
             return state

@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './styles.scss';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { HexIcon } from 'assets/icons';
-import classNames from 'classnames';
 import { ROUTES } from 'constants.js';
 import { NavLink } from 'react-router-dom';
 import { AvatarComponent, RatingComponent } from 'components/shared';
@@ -11,14 +9,14 @@ import { AvatarComponent, RatingComponent } from 'components/shared';
 const CompanyListItemComponent = ( props ) => {
     const { company, activeCompanyIndex, handleCompanyToggle } = props;
 
-    const isActive = company.get('index') === activeCompanyIndex;
+    const isActive = company.get('id') === activeCompanyIndex;
 
     const memberItems = !isActive ? null :
         company.get('users').map(user => (
             <NavLink
-                to={ `${ROUTES.USER_RATING}?id=${user.get('index')}` }
+                to={ `${ROUTES.USER_RATING}?id=${user.get('id')}` }
                 className={ styles.employBox }
-                key={ user.get('index') }
+                key={ user.get('id') }
             >
                 <div className={ styles.employMain }>
                     <AvatarComponent
@@ -31,7 +29,7 @@ const CompanyListItemComponent = ( props ) => {
                 </div>
                 <RatingComponent
                     className={ styles.rating }
-                    rating={ user.get('rating') }
+                    rating={ 10 || user.get('rating') } // TODO fix that!
                 />
             </NavLink>
         ));
@@ -41,15 +39,15 @@ const CompanyListItemComponent = ( props ) => {
             <div
                 className={ styles.companyBox }
                 onClick={ () => {
-                    handleCompanyToggle(company.get('index'));
+                    handleCompanyToggle(company.get('id'));
                 } }
             >
                 <span className={ styles.companyTitle }>
-                    { company.get('title') }
+                    { company.get('name') }
                 </span>
                 <RatingComponent
                     className={ styles.rating }
-                    rating={ company.get('rating') }
+                    rating={ 10 || company.get('rating') } // TODO fix that!
                 />
             </div>
             { isActive &&
@@ -62,7 +60,7 @@ const CompanyListItemComponent = ( props ) => {
 
 CompanyListItemComponent.propTypes = {
     company: ImmutablePropTypes.map.isRequired,
-    activeCompanyIndex: PropTypes.string,
+    activeCompanyIndex: PropTypes.number,
     handleCompanyToggle: PropTypes.func.isRequired
 };
 

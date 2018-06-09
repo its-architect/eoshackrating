@@ -4,9 +4,9 @@ import { AvatarComponent, RatingComponent } from 'components/shared';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 import Chart from 'chart.js';
+import { SpinnerComponent } from 'components/shared';
 
 const DATA_ID = {
-    RATING: 'rating',
     ACTIVITY: 'activity'
 };
 
@@ -21,22 +21,24 @@ class UserRatingComponent extends PureComponent {
      */
     handleSaveChartRef = ( ref ) => this.setState({ chartRef: ref });
 
-    handleDrawChart = () => (
-        new Chart(this.state.chartRef, {
+    handleDrawChart = () => {
+        const labels = [];
+        const data = [];
+        if ( this.props.user ) {
+            this.props.user.get('activities').forEach(activity => {
+                const date = new Date(activity.get('time_slot'));
+                labels.push(date.getHours());
+                data.push(activity.get('active_time'));
+            });
+        }
+        const chart = new Chart(this.state.chartRef, {
             type: 'line',
             data: {
-                labels: [ 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange' ],
+                labels,
                 datasets: [ {
-                    label: 'Rating',
-                    yAxisID: DATA_ID.RATING,
-                    data: [ 12, 11, 3, 1, 2, 3 ],
-                    borderColor: styles.ratingLineColor,
-                    backgroundColor: styles.ratingBackgroundColor,
-                    borderWidth: styles.ratingBorderWidth
-                }, {
                     label: 'Activity',
                     yAxisID: DATA_ID.ACTIVITY,
-                    data: [ 1, 7, 3, 9, 21, 30 ],
+                    data,
                     borderColor: styles.activityLineColor,
                     backgroundColor: styles.activityBackgroundColor,
                     borderWidth: styles.activityBorderWidth
@@ -44,19 +46,23 @@ class UserRatingComponent extends PureComponent {
             },
             options: {
                 scales: {
+                    xAxes: [ {
+                        ticks: {
+                            maxTicksLimit: 15,
+                        }
+                    } ],
                     yAxes: [ {
-                        id: DATA_ID.RATING,
-                        type: 'linear',
-                        position: 'left',
-                    }, {
                         id: DATA_ID.ACTIVITY,
                         type: 'linear',
-                        position: 'right',
+                        position: 'left',
+                        ticks: {
+                            beginAtZero: true
+                        }
                     } ]
                 }
             }
-        })
-    );
+        });
+    };
 
     render() {
         const { user } = this.props;
@@ -69,35 +75,42 @@ class UserRatingComponent extends PureComponent {
         return (
             <div className={ styles.page }>
                 <div className={ styles.mainInfo }>
-                    <div>
-                        <h2 className={ styles.header }>
-                            <span className={ styles.name }>
-                                { user.get('name') }
-                            </span>
-                            <span>
-                                { user.get('company') }
-                            </span>
-                        </h2>
-                        <div className={ classNames(styles.ratingBox, styles.hideOnMobile) }>
-                            Current rating
-                            <RatingComponent
-                                className={ styles.rating }
-                                rating={ user.get('rating') }
-                            />
+                    {
+                        user &&
+                        <div>
+                            <h2 className={ styles.header }>
+                                    <span className={ styles.name }>
+                                        { user.get('name') }
+                                    </span>
+                                <span>
+                                        { user.get('company') }
+                                    </span>
+                            </h2>
+                            <div className={ classNames(styles.ratingBox, styles.hideOnMobile) }>
+                                Current rating
+                                <RatingComponent
+                                    className={ styles.rating }
+                                    rating={ 10 || user.get('rating') } // TODO fix it!
+                                />
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div className={ styles.avatarBox }>
                         <AvatarComponent
                             className={ styles.avatar }
-                            avatar={ user.get('avatar') }
+                            avatar={ user ? user.get('avatar') : null }
                         />
+                        { user &&
                         <div className={ classNames(styles.ratingBox, styles.hideOnDesktop) }>
                             Current rating
                             <RatingComponent
                                 className={ styles.rating }
-                                rating={ user.get('rating') }
+                                rating={ 10 || user.get('rating') } // TODO fix it!
                             />
                         </div>
+                        }
+
+                        { !user && <SpinnerComponent /> }
                     </div>
                 </div>
                 <div className={ styles.chartBox }>
@@ -138,7 +151,7 @@ class UserRatingComponent extends PureComponent {
 }
 
 UserRatingComponent.propTypes = {
-    user: ImmutablePropTypes.map.isRequired
+    user: ImmutablePropTypes.map
 };
 
 export default UserRatingComponent;
