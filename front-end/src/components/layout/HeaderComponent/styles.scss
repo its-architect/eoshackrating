@@ -1,0 +1,43 @@
+.header {
+    background-color: $color-primary-2;
+    color: $color-top;
+    a {
+        color: $color-top;
+    }
+    grid-area: header;
+    display: flex;
+
+    @include desktop {
+        padding-left: $gap-lg;
+    }
+}
+
+.logo {
+    padding: 0 $gap-xs;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    &:hover {
+        .logoTitle {
+            color: $color-primary-1;
+        }
+    }
+    svg {
+        margin-right: $gap-xs;
+    }
+
+    @include desktop {
+        padding: 0 $gap-xs 0 0;
+    }
+}
+.logoImg {
+    width: 80px;
+}
+.bullet {
+    color: $color-primary-1;
+}
+.headerText {
+    font-size: 13px;
+    font-weight: 400;
+}

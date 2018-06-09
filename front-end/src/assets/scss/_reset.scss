@@ -1,0 +1,51 @@
+a {
+    color: $color-primary-1;
+    text-decoration: underline;
+    outline: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+}
+
+h2 {
+    margin: 15px 0 20px 0;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 35px;
+}
+
+h3 {
+    font-weight: 800;
+    font-size: 24px;
+    margin: 10px 0;
+}
+h4 {
+    font-weight: 800;
+    font-size: 20px;
+    margin: 10px 0;
+}
+input {
+    color: $color-back;
+    background-color: transparent;
+    outline: none;
+}
+
+textarea {
+    color: $color-back;
+    background-color: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+hr {
+    border-color: $color-shade-4;
+    width: 60%;
+    margin: 10px auto;
+}

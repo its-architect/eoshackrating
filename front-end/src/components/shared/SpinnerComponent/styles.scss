@@ -1,0 +1,27 @@
+.spinner {
+    svg {
+        width: 150px;
+        height: 150px;
+    }
+}
+.spinnerFull {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinnerRow {
+    width: 100%;
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinnerSmall {
+    svg {
+        width: 50px;
+        height: 50px;
+        stroke-width: 3px;
+    }
+}

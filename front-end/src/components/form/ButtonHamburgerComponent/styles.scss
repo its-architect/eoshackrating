@@ -1,0 +1,52 @@
+.buttonContainer {
+    &:hover {
+        .line{
+            background: $color-primary-1;
+        }
+    }
+}
+.button{
+    width: 20px;
+    height: 12px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+
+    &Open {
+        span:nth-child(1) {
+            top: 5px;
+            transform: rotate(135deg);
+        }
+        span:nth-child(2) {
+            opacity: 0;
+            left: -100%;
+        }
+        span:nth-child(3) {
+            top: 5px;
+            transform: rotate(-135deg);
+        }
+    }
+}
+
+.line{
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: $color-top;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: $time ease-in-out;
+    &:nth-child(1) {
+        top: 0;
+    }
+    &:nth-child(2) {
+        top: 5px;
+    }
+    &:nth-child(3) {
+        top: 10px;
+    }
+}

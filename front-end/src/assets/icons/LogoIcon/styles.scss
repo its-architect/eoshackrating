@@ -1,0 +1,9 @@
+.logoIcon {
+    width: 25px;
+    path {
+        fill: $color-primary-1;
+        &:last-child {
+            fill: $color-top;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.nav {
+    grid-area: nav;
+    background-color: $color-primary-2;
+}
+
+.navInner {
+    width: 100%;
+    height: 100%;
+}
+
+.menuToggle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuContainer {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    right: 0;
+    pointer-events: none;
+    overflow: hidden;
+    transition: all $time ease;
+    max-height: calc(100% - 40px);
+    overflow-y: hidden;
+}
+
+.menuContainerOpen {
+    display: block;
+    pointer-events: all;
+    box-shadow: $shadow;
+    overflow-y: auto;
+}
+
+.menu {
+    display: flex;
+    top: $header-height;
+    background-color: $color-shade-1;
+    color: $color-back;
+    flex-direction: column;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all $time ease;
+    font-size: 26px;
+}
+
+.menuOpen {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+}
+.subDivision {
+    margin-top: 20px;
+    &:last-child {
+        margin-bottom: 30px;
+    }
+}
+.subTitle {
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+.subTitle,
+.link,
+.signOut {
+    padding: 10px;
+}
+
+.link {
+    color: $color-back;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    text-decoration: none;
+    font-weight: 700;
+    span {
+        border-bottom: 1px solid $color-back;
+    }
+    &:hover {
+        color: $color-primary-1;
+        span {
+            border-bottom-color: $color-primary-1;
+        }
+    }
+}
+
+.signOut {
+    color: $color-important;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: $gap-xs;
+}
