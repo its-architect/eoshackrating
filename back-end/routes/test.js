@@ -112,6 +112,50 @@ function testParsing (rawActivities) {
 // console.log('===========================');
 // console.log(JSON.stringify(resultData));
 
+function parseActivities2(rawActivities) {
+
+    let projects = {};
+
+    rawActivities.forEach((activity) => {
+        let timeSlot = activity.time_slot;
+        let userID = activity.user_id;
+        let projectID = activity.project_id;
+        let activityTime = activity.overall;
+
+        // Grouping projects
+        let project_users = {};
+        if (!(projectID in projects)) {
+            projects[projectID] = {
+                name: 'Project Name',
+                rating: 50,
+                users: project_users
+            };
+        } else {
+            project_users = projects[projectID].users;
+        }
+
+        // Grouping users inside of project
+        let user_activities = {};
+        if (!(userID in project_users)) {
+            project_users[userID] = {
+                name: 'User Name',
+                activities: user_activities
+            };
+        } else {
+            user_activities = project_users[userID].activities;
+        }
+
+        // Grouping activities inside of user
+        if (!(timeSlot in user_activities)) {
+            user_activities[timeSlot] = activityTime;
+        } else {
+            user_activities[timeSlot] += activityTime;
+        }
+    });
+
+    return projects;
+}
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('test', {
