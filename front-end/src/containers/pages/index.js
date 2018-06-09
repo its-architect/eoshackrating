@@ -1,7 +1,7 @@
 import UserRatingContainer from './UserRatingContainer';
-import RatingContainer from './RatingContainer';
+import CompanyRatingContainer from './CompanyRatingContainer';
 
 export {
-    RatingContainer,
+    CompanyRatingContainer,
     UserRatingContainer,
 };

@@ -1,0 +1,30 @@
+$localTime: $time-long;
+.GatherIcon {
+    fill: transparent;
+    stroke: currentColor;
+}
+.rightSmallCircle,
+.leftSmallCircle {
+    stroke-dashoffset: -60.88;
+    stroke-dasharray: 60.88;
+    transition: all ($localTime/2) linear;
+    transition-delay: 0s;
+}
+.rightSmallCircleActive,
+.leftSmallCircleActive {
+    stroke-dashoffset: -30.44;
+    transition-delay: $localTime;
+}
+
+.rightCircle,
+.leftCircle {
+    stroke-dashoffset: -117.838;
+    stroke-dasharray: 117.838;
+    transition: all $localTime linear;
+    transition-delay: ($localTime/2);
+}
+.rightCircleActive,
+.leftCircleActive {
+    stroke-dashoffset: 0;
+    transition-delay: 0s;
+}

@@ -4,7 +4,7 @@ import { ROUTES } from 'constants.js';
 import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { UserRatingContainer, RatingContainer } from 'containers/pages';
+import { UserRatingContainer, CompanyRatingContainer } from 'containers/pages';
 
 class MainComponent extends PureComponent {
     render() {
@@ -28,7 +28,7 @@ class MainComponent extends PureComponent {
                                     <Route
                                         exact
                                         path={ ROUTES.ROOT }
-                                        component={ RatingContainer }
+                                        component={ CompanyRatingContainer }
                                     />
                                     <Route
                                         path={ ROUTES.USER_RATING }
