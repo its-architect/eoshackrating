@@ -5,4 +5,43 @@
     white-space: pre-wrap;
     word-break: break-word;
     overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+.pageEnter {
+    width: 100%;
+    box-sizing: border-box;
+
+    opacity: 0;
+    transform: translateX(-100%);
+    position: absolute;
+    z-index: 1;
+}
+$animation-time: $time-normal;
+.pageEnterActive {
+    opacity: 1;
+    position: absolute;
+    transform: translateX(0);
+    transition: all $animation-time linear;
+}
+.pageEnterDone {
+    position: relative;
+}
+.pageExit {
+    width: 100%;
+    box-sizing: border-box;
+
+    position: absolute;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.pageExitActive {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all $animation-time linear;
+}
+
+:export {
+    timeout: $animation-time;
 }
