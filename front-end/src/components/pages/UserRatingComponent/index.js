@@ -71,12 +71,12 @@ class UserRatingComponent extends PureComponent {
                 <div className={ styles.mainInfo }>
                     <div>
                         <h2 className={ styles.header }>
-                        <span className={ styles.name }>
-                            { user.get('name') }
-                        </span>
-                            <span className={ styles.companyTitle }>
-                            { user.get('company') }
-                        </span>
+                            <span className={ styles.name }>
+                                { user.get('name') }
+                            </span>
+                            <span>
+                                { user.get('company') }
+                            </span>
                         </h2>
                         <div className={ classNames(styles.ratingBox, styles.hideOnMobile) }>
                             Current rating
@@ -114,14 +114,19 @@ class UserRatingComponent extends PureComponent {
                         </p>
                         <ol>
                             <li>
-                                <math>η</math> (ETA) is a random value of the programmer&apos;s activity time, with an unknown
+                                <math>η</math>
+                                (ETA) is a random value of the programmer&apos;s activity time, with an unknown
                                 distribution
-                                function, but with the known mathematical expectation <math>a = E (η)</math> and the root-mean-square
-                                deviation <math>σ = √ Var (η)</math>
+                                function, but with the known mathematical expectation
+                                <math>a = E (η)</math>
+                                and the root-mean-square
+                                deviation
+                                <math>σ = √ Var (η)</math>
 
                             </li>
                             <li>
-                                <math>ξ</math> (CSI) is a normally distributed random variable obtained on the basis of the first
+                                <math>ξ</math>
+                                (CSI) is a normally distributed random variable obtained on the basis of the first
                                 quantity with the above parameters
                             </li>
                         </ol>
