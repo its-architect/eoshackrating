@@ -1,0 +1,8 @@
+.main {
+    grid-area: main;
+    max-width: 100vw;
+    background-color: $color-shade-2;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-y: auto;
+}

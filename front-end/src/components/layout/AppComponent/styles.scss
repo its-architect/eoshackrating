@@ -1,0 +1,14 @@
+:global {
+    #app {
+        height: 100vh;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: auto 40px;
+        grid-template-rows: $header-height 0 auto 30px;
+        grid-template-areas:
+                "header nav"
+                "notifications notifications"
+                "main main"
+                "footer footer";
+    }
+}

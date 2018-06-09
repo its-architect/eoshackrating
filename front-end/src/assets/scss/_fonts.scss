@@ -1,0 +1,33 @@
+$typefaces: (
+  //'Circle-Ultra-Light': (
+  //  family: 'Circle',
+  //  weight: 200,
+  //  style: normal,
+  //),
+  'Circle-Light': (
+    family: 'Circle',
+    weight: 300,
+    style: normal,
+  ),
+  'Circle-Regular': (
+    family: 'Circle',
+    weight: 400,
+    style: normal,
+  ),
+  'Circle-Bold': (
+    family: 'Circle',
+    weight: 700,
+    style: normal,
+  ),
+);
+
+@if variable-exists(typefaces) {
+  @each $file, $option in $typefaces {
+    @font-face {
+      font-family: map-get(map-get($typefaces, $file), family);
+      font-style: map-get(map-get($typefaces, $file), style);
+      font-weight: map-get(map-get($typefaces, $file), weight);
+      src: url('./assets/fonts/#{$file}.otf') format('truetype')
+    }
+  }
+}

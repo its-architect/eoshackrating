@@ -1,0 +1,25 @@
+
+.scoreBox {
+    display: flex;
+    align-items: center;
+    color: $color-shade-4;
+}
+.scoreValue {
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: $color-top;
+    position: relative;
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+}
