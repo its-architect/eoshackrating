@@ -1,12 +1,9 @@
-import { push }           from 'react-router-redux';
-import { Routes }         from 'constants.js';
-import epicCreator        from '../epicCreator';
-import types              from './types';
-import actions            from './actions';
-import selectors          from './selectors';
-import services           from './services';
-import { of }             from 'rxjs/observable/of';
-import * as mappers       from './mappers';
+import epicCreator from '../epicCreator';
+import types from './types';
+import actions from './actions';
+import selectors from './selectors';
+import services from './services';
+import { of } from 'rxjs/observable/of';
 import * as sharedMappers from 'ducks/sharedMappers';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
@@ -25,7 +22,11 @@ export const getUser = ( action$, state ) => epicCreator(
     ( { id } ) => observer => {
         const subscription = services
             .getUserRequest(id)
-            .map(({response}) => actions.getUserSuccess(response))
+            .map(( { response } ) => actions.getUserSuccess({
+                ...response.user,
+                company: response.project.name,
+                activities: response.activities
+            }))
             .catch(error => of(actions.getUserError(
                 sharedMappers.mapError(error)
             )))

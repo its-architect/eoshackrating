@@ -1,19 +1,23 @@
-import { fromJS, Map }  from 'immutable';
-import types            from './types';
+import { fromJS, Map, OrderedSet } from 'immutable';
+import types from './types';
 
 const initialState = fromJS({
     status: {},
-    info: null,
+    allIds: OrderedSet(),
+    byId: {},
 });
 
 export default ( state = initialState, action ) => {
-    switch (action.type) {
+    switch ( action.type ) {
         case types.GET_USER_REQUEST:
             return state
                 .set('status', Map({ isFetching: action.type }));
         case types.GET_USER_SUCCESS:
+            const user = action.payload;
             return state
-                .set('status', Map({ success: action.type }));
+                .updateIn([ 'allIds' ], ids => ids.union([user.id]))
+                .setIn([ 'byId', user.id ], fromJS(user))
+                .setIn([ 'status' ], Map({ success: action.type }));
         case types.GET_USER_ERROR:
             return state
                 .set('status', Map({ errors: Map(action.error) }));

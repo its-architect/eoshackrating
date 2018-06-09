@@ -92,11 +92,8 @@ math {
     padding: 0 $gap-xs;
 }
 :export {
-    ratingLineColor: $color-primary-1;
-    ratingBackgroundColor: fade_out($color-primary-1, 0.9);
-    ratingBorderWidth: 1;
-    activityLineColor: $color-primary-2;
-    activityBackgroundColor: fade_out($color-primary-2, 0.9);
+    activityLineColor: $color-primary-1;
+    activityBackgroundColor: fade_out($color-primary-1, 0.9);
     activityBorderWidth: 1;
 }
 

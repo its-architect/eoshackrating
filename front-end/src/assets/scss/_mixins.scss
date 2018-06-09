@@ -7,6 +7,8 @@
 @mixin page {
     padding: $gap-xs;
     @include desktop {
+        max-width: 1024px;
+        margin: 0 auto;
         padding: $gap-md;
     }
 }
@@ -15,3 +17,4 @@
     background-size: cover;
     background-position: center;
 }
+// TODO change spinner so it looks more similar to GatherIcon

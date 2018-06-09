@@ -2,14 +2,17 @@ $hexSize: 35px;
 .page {
     @include page();
 }
+
 .companiesGather {
     @include desktop {
+        margin: 0 auto;
         height: 400px;
         justify-content: space-between;
         display: flex;
         align-items: center;
     }
 }
+
 .companiesLeftBox,
 .companiesRightBox {
     @include desktop {
@@ -17,17 +20,19 @@ $hexSize: 35px;
         flex: 1 0 auto;
     }
 }
+
 .companiesRightBox {
-        .employMain,
-        .companyBox,
-        .employBox {
-            flex-direction: row-reverse;
-        }
-        .employBox {
-            padding-right: $gap-xs;
-            padding-left: $hexSize;
-        }
+    .employMain,
+    .companyBox,
+    .employBox {
+        flex-direction: row-reverse;
+    }
+    .employBox {
+        padding-right: $gap-xs;
+        padding-left: $hexSize;
+    }
 }
+
 .companyBox,
 .employBox {
     display: flex;
@@ -35,44 +40,49 @@ $hexSize: 35px;
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
-    @include desktop {
-        max-width: 335px;
-    }
 }
+
 .companyBox {
     flex: 0 0 auto;
     cursor: pointer;
     padding: $gap-sm 0;
 }
+
 .employBox {
     padding-left: $gap-xs;
     padding-right: $hexSize;
     margin-bottom: $gap-xs;
 }
+
 .companyTitle {
     font-size: 18px;
     font-weight: 800;
 }
+
 .rating {
     height: $hexSize;
     width: $hexSize;
 }
+
 .employMain {
     display: flex;
     align-items: center;
     flex: 0 0 auto;
 }
+
 $avatarSize: 35px;
 .avatar {
-    margin-right: $gap-xs;
+    margin: 0 $gap-xs;
     width: $avatarSize;
     height: $avatarSize;
 }
+
 .ratingBoxCompany {
     svg {
         color: darken($color-primary-1, $color-enhance)
     }
 }
+
 .ratingValue {
     color: $color-top;
     white-space: nowrap;
@@ -81,6 +91,7 @@ $avatarSize: 35px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 $iconSize: 150px;
 .gatherIconBox {
     margin: 0 $gap-md;
@@ -89,8 +100,8 @@ $iconSize: 150px;
     justify-content: center;
     color: $color-primary-1;
     svg {
-        width: $iconSize ;
-        height: $iconSize ;
+        width: $iconSize;
+        height: $iconSize;
     }
 }
 

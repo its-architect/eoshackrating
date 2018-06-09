@@ -4,7 +4,7 @@ export default {
     /**
      * Request to get user action
      *
-     * @param {string} id
+     * @param {number} id
      */
     getUserRequest: ( id ) => ({
         id,
