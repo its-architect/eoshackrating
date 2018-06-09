@@ -26,7 +26,7 @@
     flex: 0 0 auto;
 }
 $avatarSize: 65px;
-$avatarSizeDesktop: 125px;
+$avatarSizeDesktop: 105px;
 .avatar {
     margin-right: $gap-xs;
     width: $avatarSize;
@@ -71,7 +71,7 @@ $hexSize: 35px;
     }
 }
 .chart {
-    max-width: 390px;
+    max-width: 380px;
     @include mobile {
         margin: $gap-md auto 0 auto;
     }
@@ -89,6 +89,10 @@ $hexSize: 35px;
 }
 math {
     font-weight: 800;
+    color: $color-primary-1;
+    font-size: 20px;
+    white-space: nowrap;
+    padding: 0 $gap-xs;
 }
 :export {
     ratingLineColor: $color-primary-1;

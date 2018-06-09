@@ -13,15 +13,16 @@ const HeaderComponent = () => (
             <LogoIcon />
             <h1 className={ styles.headerText }>
                 <span>
-                    IT
+                    EOS
                 </span>
                 &nbsp;
                 <span className={ styles.bullet }>
                 &bull;
                 </span>
+
                 &nbsp;
                 <span>
-                    Sphere
+                    ITS
                 </span>
             </h1>
         </NavLink>
