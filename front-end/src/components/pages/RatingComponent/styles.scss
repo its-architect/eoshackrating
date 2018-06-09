@@ -1,0 +1,60 @@
+$hexSize: 35px;
+$maxBoxSize: 335px;
+.page {
+    @include page();
+}
+.companyBox,
+.employBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.companyBox {
+    cursor: pointer;
+    margin-top: $gap-md;
+    max-width: $maxBoxSize;
+}
+.companyTitle {
+    font-size: 18px;
+}
+.ratingBox {
+    flex: 0 0 auto;
+    margin-left: $gap-xs;
+    width: $hexSize;
+    height: $hexSize;
+    position: relative;
+    svg {
+        color: $color-primary-1;
+        width: 100%;
+        height: 100%;
+    }
+}
+.ratingBoxCompany {
+    svg {
+        color: darken($color-primary-1, $color-enhance)
+    }
+}
+.ratingValue {
+    color: $color-top;
+    white-space: nowrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.employBox {
+    padding-left: $gap-xs;
+    margin-top: $gap-xs;
+    max-width: $maxBoxSize - $hexSize - $gap-xs;
+}
+.employTitle {
+    font-weight: 300;
+}
+
+
+// TODO styles ideas
+// 1) on company hover show underline go from left to right after svg animation path around hex
+// 2) on company select side line into hex and svg path around it (may be also calculate time according from employ and
+//    show line from employ to company line

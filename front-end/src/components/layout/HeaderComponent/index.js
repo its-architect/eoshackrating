@@ -1,13 +1,13 @@
 import React           from 'react';
 import styles          from './styles.scss';
 import { NavLink }     from 'react-router-dom';
-import { Routes }      from 'constants.js';
+import { ROUTES }      from 'constants.js';
 import { LogoIcon }    from 'assets/icons';
 
 const HeaderComponent = () => (
     <header className={ styles.header }>
         <NavLink
-            to={ Routes.ROOT }
+            to={ ROUTES.ROOT }
             className={ styles.logo }
         >
             <LogoIcon />

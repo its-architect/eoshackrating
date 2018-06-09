@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import styles from './styles.scss';
 import { NavLink } from 'react-router-dom';
-import { Routes } from 'constants.js';
+import { ROUTES } from 'constants.js';
 import PropTypes from 'prop-types';
 import { ButtonHamburgerComponent } from 'components/form';
 import classNames from 'classnames/bind';
@@ -40,10 +40,10 @@ const MenuComponent = ( props ) => {
                     >
                         <Fragment>
                             <NavLink
-                                to={ Routes.LINK1 }
+                                to={ ROUTES.RATING_LIST }
                                 className={ styles.link }
                             >
-                                link1
+                                Rating list
                             </NavLink>
                         </Fragment>
                     </div>

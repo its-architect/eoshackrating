@@ -1,10 +1,11 @@
 import React, { PureComponent }  from 'react';
 import styles                    from './styles.scss';
-import { Routes }                from 'constants.js';
+import { ROUTES }                from 'constants.js';
 import { Switch }                from 'react-router-dom';
 
 import {
     LandingComponent,
+    RatingComponent
 }                                                    from 'components/pages';
 import { RedirectRouteComponent } from 'components/shared';
 
@@ -16,8 +17,13 @@ class MainComponent extends PureComponent {
                     { /* all users */ }
                     <RedirectRouteComponent
                         exact
-                        path={ Routes.ROOT }
+                        path={ ROUTES.ROOT }
                         component={ LandingComponent }
+                    />
+                    <RedirectRouteComponent
+                        exact
+                        path={ ROUTES.RATING_LIST }
+                        component={ RatingComponent }
                     />
 
                 </Switch>
