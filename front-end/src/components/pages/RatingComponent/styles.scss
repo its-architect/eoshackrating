@@ -2,6 +2,11 @@ $hexSize: 35px;
 .page {
     @include page();
 }
+.companiesVs {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
 .companyBox,
 .employBox {
     display: flex;
@@ -12,6 +17,7 @@ $hexSize: 35px;
     max-width: 335px;
 }
 .companyBox {
+    flex: 0 0 auto;
     cursor: pointer;
     padding-top: $gap-md;
 }

@@ -2,35 +2,43 @@ import React, { PureComponent } from 'react';
 import styles from './styles.scss';
 import { ROUTES } from 'constants.js';
 import { Switch } from 'react-router-dom';
-
-import {
-    LandingComponent
-} from 'components/pages';
-import { RedirectRouteComponent } from 'components/shared';
+import { Route } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { UserRatingContainer, RatingContainer } from 'containers/pages';
 
 class MainComponent extends PureComponent {
     render() {
         return (
             <main className={ styles.main }>
-                <Switch>
-                    { /* all users */ }
-                    <RedirectRouteComponent
-                        exact
-                        path={ ROUTES.ROOT }
-                        component={ LandingComponent }
-                    />
-                    <RedirectRouteComponent
-                        exact
-                        path={ ROUTES.RATING_LIST }
-                        component={ RatingContainer }
-                    />
-                    <RedirectRouteComponent
-                        path={ ROUTES.USER_RATING }
-                        component={ UserRatingContainer }
-                    />
-
-                </Switch>
+                <Route
+                    render={ ( { location } ) => (
+                        <TransitionGroup>
+                            <CSSTransition
+                                key={ location.key }
+                                classNames={ {
+                                    enter: styles.pageEnter,
+                                    enterActive: styles.pageEnterActive,
+                                    enterDone: styles.pageEnterDone,
+                                    exit: styles.pageExit,
+                                    exitActive: styles.pageExitActive,
+                                } }
+                                timeout={ (+styles.timeout.slice(0, -1)) * 1000 }
+                            >
+                                <Switch location={ location }>
+                                    <Route
+                                        exact
+                                        path={ ROUTES.ROOT }
+                                        component={ RatingContainer }
+                                    />
+                                    <Route
+                                        path={ ROUTES.USER_RATING }
+                                        component={ UserRatingContainer }
+                                    />
+                                </Switch>
+                            </CSSTransition>
+                        </TransitionGroup>
+                    ) }
+                />
             </main>
         );
     }

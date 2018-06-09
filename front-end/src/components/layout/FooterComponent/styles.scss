@@ -6,17 +6,4 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-
-    @include desktop {
-        padding: 0 $gap-sm 0 43px;
-        background-color: $color-shade-2;
-    }
-}
-.footerLink {
-    color: $color-shade-4;
-    text-decoration: none;
-    margin-right: 20px;
-    &:last-child {
-        margin-right: 0;
-    }
 }
