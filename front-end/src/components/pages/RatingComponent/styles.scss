@@ -1,5 +1,4 @@
 $hexSize: 35px;
-$maxBoxSize: 335px;
 .page {
     @include page();
 }
@@ -9,26 +8,36 @@ $maxBoxSize: 335px;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    box-sizing: border-box;
+    max-width: 335px;
 }
 .companyBox {
     cursor: pointer;
-    margin-top: $gap-md;
-    max-width: $maxBoxSize;
+    padding-top: $gap-md;
+}
+.employBox {
+    padding-left: $gap-xs;
+    padding-right: $hexSize;
+    margin-top: $gap-xs;
 }
 .companyTitle {
     font-size: 18px;
+    font-weight: 800;
 }
-.ratingBox {
-    flex: 0 0 auto;
-    margin-left: $gap-xs;
-    width: $hexSize;
+.rating {
     height: $hexSize;
-    position: relative;
-    svg {
-        color: $color-primary-1;
-        width: 100%;
-        height: 100%;
-    }
+    width: $hexSize;
+}
+.employMain {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+$avatarSize: 35px;
+.avatar {
+    margin-right: $gap-xs;
+    width: $avatarSize;
+    height: $avatarSize;
 }
 .ratingBoxCompany {
     svg {
@@ -44,11 +53,6 @@ $maxBoxSize: 335px;
     transform: translate(-50%, -50%);
 }
 
-.employBox {
-    padding-left: $gap-xs;
-    margin-top: $gap-xs;
-    max-width: $maxBoxSize - $hexSize - $gap-xs;
-}
 .employTitle {
     font-weight: 300;
 }

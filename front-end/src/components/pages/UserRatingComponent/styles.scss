@@ -1,0 +1,66 @@
+.page {
+    @include page();
+}
+.mainInfo {
+    @include desktop {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+}
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.name {
+    margin-right: $gap-xs;
+}
+.companyTitle {
+    font-weight: 300;
+}
+.avatarBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+}
+$avatarSize: 65px;
+$avatarSizeDesktop: 125px;
+.avatar {
+    margin-right: $gap-xs;
+    width: $avatarSize;
+    height: $avatarSize;
+    @include desktop {
+        margin-right: $gap-lg;
+        width: $avatarSizeDesktop;
+        height: $avatarSizeDesktop;
+    }
+}
+.ratingBox {
+    display: flex;
+    align-items: center;
+    @include mobile {
+        margin-top: $gap-xs;
+    }
+    @include desktop {
+        font-size: 20px;
+    }
+}
+
+$hexSize: 35px;
+.rating {
+    height: $hexSize;
+    width: $hexSize;
+}
+
+.hideOnMobile {
+    @include mobile{
+        display: none;
+    }
+}
+.hideOnDesktop {
+    @include desktop{
+        display: none;
+    }
+}
