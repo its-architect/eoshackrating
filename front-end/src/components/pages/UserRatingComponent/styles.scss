@@ -64,3 +64,39 @@ $hexSize: 35px;
         display: none;
     }
 }
+.chartBox {
+    @include desktop {
+        display: flex;
+        align-items: center;
+    }
+}
+.chart {
+    max-width: 390px;
+    @include mobile {
+        margin: $gap-md auto 0 auto;
+    }
+    @include desktop {
+        margin-top: $gap-md;
+    }
+}
+.chartInfo {
+    @include mobile {
+        margin-top: $gap-xs;
+    }
+    @include desktop {
+        margin-left: $gap-md;
+    }
+}
+math {
+    font-weight: 800;
+}
+:export {
+    ratingLineColor: $color-primary-1;
+    ratingBackgroundColor: fade_out($color-primary-1, 0.9);
+    ratingBorderWidth: 1;
+    activityLineColor: $color-primary-2;
+    activityBackgroundColor: fade_out($color-primary-2, 0.9);
+    activityBorderWidth: 1;
+}
+
+// TODO !!! for slides add fill line
