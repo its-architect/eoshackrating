@@ -10,8 +10,7 @@ let appToken = 'jr7vyt_6rSCDx3fgaQbEE--RYqjX95EsZFq2NlZoW5U';
 let authToken = 'AjkNZDrobx8NDO8GhujhlBRA5bAI7W0veNgWdoYFj3U';
 let startTime = '2018-06-09T00:00:00.000Z';
 let stopTime = '2018-06-11T00:00:00.000Z';
-
-const divisor = '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++';
+const hub_users = [315143, 322140, 322444, 245720, 322449, 322483, 322489, 322491, 322498];
 
 async function requestHubstaffAPI(object, params) {
     return (await axios({
@@ -33,14 +32,36 @@ async function getUserData(userID) {
         stop_time: stopTime,
         users: userID
     });
+
     let activities = [];
+    let activitiesForRating = [];
     hub_activities.activities.forEach((obj) => {
         activities.push({
             id: obj.id,
             time_slot: obj.time_slot,
             active_time: obj.overall,
         })
+        activitiesForRating.push(obj.overall);
     });
+
+    // GETTING RATING
+    const contract = await eos.contract("rating");
+    await contract.calculate({
+        hubstaff_id: userID,
+        activities: activitiesForRating,
+    }, {
+        authorization: 'rating'
+    });
+
+    const {rows} = await eos.getTableRows({
+        json: true,
+        code: 'rating',
+        scope: 'rating',
+        table: 'ratings',
+        'lowerBound': 0,
+    });
+
+    const {rating} = rows.find(({hubstaff_id}) => (hubstaff_id === userID));
 
     let result = {
         project: {
@@ -50,10 +71,11 @@ async function getUserData(userID) {
         user: {
             id: hub_user.user.id,
             name: hub_user.user.name,
+            rating: rating,
         },
         activities: activities
     };
-    return JSON.stringify(result);
+    return result;
 }
 
 router.all('/', function (req, res, next) {
@@ -66,103 +88,56 @@ router.all('/user', function (req, res, next) {
         res.end('User ID not passed');
     }
     getUserData(userID).then((result) => {
-        res.send(result);
+        res.send(JSON.stringify(result));
     }).catch((error) => {
         res.send(error);
     });
 });
 
 router.all('/projects', async (req, res, next) => {
-    const hub_projects = await requestHubstaffAPI('projects');
 
-    let promises = hub_projects.projects.map(async project => {
-        const {users} = await requestHubstaffAPI(`projects/${project.id}/members`);
+    const promises = hub_users.map((async user => {
+        const userResult = await getUserData(user);
+        return userResult;
+    }));
+    const users = await Promise.all(promises);
 
-        return {...project, users, activities: []};
-    });
-
-    const projects = await Promise.all(promises);
-
-    let hub_activities = await requestHubstaffAPI('activities', {
-        start_time: startTime,
-        stop_time: stopTime,
-    });
-
-    const result = projects.map(project => {
-        const users = project.users.map(user => {
-            const activities = hub_activities.activities.filter(({project_id, user_id}) => ((project_id === project.id) && (user_id === user.id)));
-
-            return {...user, activities}
-        });
-
-        return {...project, users}
-    });
-
-    res.send(result);
+    res.send(JSON.stringify(users));
 });
 
 router.all('/projects_rating', async (req, res, next) => {
-    const hub_projects = await requestHubstaffAPI('projects');
-
-    let promises = hub_projects.projects.map(async project => {
-        const {users} = await requestHubstaffAPI(`projects/${project.id}/members`);
-
-        return {...project, users, activities: []};
-    });
-
-    const projects = await Promise.all(promises);
 
     let hub_activities = await requestHubstaffAPI('activities', {
         start_time: startTime,
         stop_time: stopTime,
+        users: 322444,
     });
+    //
+    // const contract = await eos.contract("rating");
+    // await contract.calculate({
+    //     hubstaff_id: user.id,
+    //     activities: hub_activities,
+    //     // randoms: randoms
+    // }, {
+    //     authorization: 'rating'
+    // });
+    //
+    // console.log('user-----', hub_activities);
+    // console.log('!!!!!!!!!!!!!!!!!!!!!!!');
+    //
+    // const {rows} = await eos.getTableRows({
+    //     json: true,
+    //     code: 'rating',
+    //     scope: 'rating',
+    //     table: 'ratings',
+    //     'lowerBound': 0,
+    // });
+    // console.log('rows-----', rows);
+    //
+    // const {rating} = rows.find(({hubstaff_id}) => (hubstaff_id === user.id));
+    // console.log('rating-----', rating);
 
-    console.log(divisor);
-    console.log('HUB-ACTIVITIES-----', hub_activities);
-
-    const results = projects.map(async project => {
-        const users = project.users.map(async user => {
-            const activities = hub_activities.activities.filter(({project_id, user_id}) => ((project_id === project.id) && (user_id === user.id)));
-            console.log(divisor);
-            console.log('activities++++++++++++++', activities.length);
-            console.log(project.id, user.id);
-
-            const contract = await eos.contract("rating");
-            await contract.calculate({
-                hubstaff_id: user.id,
-                activities: activities,
-                // randoms: randoms
-            }, {
-                authorization: 'rating'
-            });
-
-            console.log('user-----', user);
-
-            const {rows} = await eos.getTableRows({
-                json: true,
-                code: 'rating',
-                scope: 'rating',
-                table: 'ratings',
-                'lowerBound': 0,
-            });
-            console.log('rows-----', rows);
-
-            const {rating} = rows.find(({hubstaff_id}) => (hubstaff_id === user.id));
-            console.log('rating-----', rating);
-
-            return {
-                ...user,
-                rating,
-                activities,
-            }
-        });
-
-        return {...project.id, users: await Promise.all(users)}
-    });
-
-    const result = await Promise.all(results);
-
-    res.send(result);
+    res.send(hub_activities);
 });
 
 module.exports = router;
