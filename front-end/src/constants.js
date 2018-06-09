@@ -1,6 +1,6 @@
-export const Routes = {
+export const ROUTES = {
     ROOT: '/',
-    LINK1: '/link1',
+    RATING_LIST: '/link1',
 };
 
 export const BASE_API =

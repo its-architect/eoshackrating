@@ -4,3 +4,9 @@
 @mixin desktop {
     @media (min-width: $screen-desktop) { @content; }
 }
+@mixin page {
+    padding: $gap-xs;
+    @include desktop {
+        padding: $gap-md;
+    }
+}
