@@ -79,10 +79,10 @@ function testParsing (rawActivities) {
         if (!resultData[projectID]) {
             resultData[projectID] = {
                 name: 'Project Name',
-                data: projectData
+                users: projectData
             };
         } else {
-            projectData = resultData[projectID].data;
+            projectData = resultData[projectID].users;
         }
 
         // Grouping users inside of project
@@ -90,7 +90,7 @@ function testParsing (rawActivities) {
         if (!projectData[userID]) {
             projectData[userID] = {
                 name: 'User Name',
-                data: userData
+                users: userData
             };
         } else {
             userData = projectData[userID];
