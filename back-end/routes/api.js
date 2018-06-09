@@ -40,7 +40,7 @@ async function getUserData(userID) {
             id: obj.id,
             time_slot: obj.time_slot,
             active_time: obj.overall,
-        })
+        });
         activitiesForRating.push(obj.overall);
     });
 
@@ -103,41 +103,6 @@ router.all('/projects', async (req, res, next) => {
     const users = await Promise.all(promises);
 
     res.send(JSON.stringify(users));
-});
-
-router.all('/projects_rating', async (req, res, next) => {
-
-    let hub_activities = await requestHubstaffAPI('activities', {
-        start_time: startTime,
-        stop_time: stopTime,
-        users: 322444,
-    });
-    //
-    // const contract = await eos.contract("rating");
-    // await contract.calculate({
-    //     hubstaff_id: user.id,
-    //     activities: hub_activities,
-    //     // randoms: randoms
-    // }, {
-    //     authorization: 'rating'
-    // });
-    //
-    // console.log('user-----', hub_activities);
-    // console.log('!!!!!!!!!!!!!!!!!!!!!!!');
-    //
-    // const {rows} = await eos.getTableRows({
-    //     json: true,
-    //     code: 'rating',
-    //     scope: 'rating',
-    //     table: 'ratings',
-    //     'lowerBound': 0,
-    // });
-    // console.log('rows-----', rows);
-    //
-    // const {rating} = rows.find(({hubstaff_id}) => (hubstaff_id === user.id));
-    // console.log('rating-----', rating);
-
-    res.send(hub_activities);
 });
 
 module.exports = router;
