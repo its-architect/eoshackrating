@@ -39,7 +39,17 @@ class RatingComponent extends PureComponent {
                 <h1>
                     Rating list by organizations
                 </h1>
-                { companyItems }
+                <div className={ styles.companiesVs }>
+                    <div>
+                        { companyItems }
+                    </div>
+                    <span>
+                    vs
+                    </span>
+                    <div>
+                        { companyItems }
+                    </div>
+                </div>
             </div>
         );
     }
