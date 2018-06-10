@@ -90,7 +90,7 @@ class UserRatingComponent extends PureComponent {
                                 Current rating
                                 <RatingComponent
                                     className={ styles.rating }
-                                    rating={ 10 || user.get('rating') } // TODO fix it!
+                                    rating={ user.get('rating') }
                                 />
                             </div>
                         </div>
@@ -105,7 +105,7 @@ class UserRatingComponent extends PureComponent {
                             Current rating
                             <RatingComponent
                                 className={ styles.rating }
-                                rating={ 10 || user.get('rating') } // TODO fix it!
+                                rating={ user.get('rating') }
                             />
                         </div>
                         }

@@ -10,29 +10,36 @@ const CompanyListItemComponent = ( props ) => {
     const { company, activeCompanyIndex, handleCompanyToggle } = props;
 
     const isActive = company.get('id') === activeCompanyIndex;
+    let companyRating = 0;
+    company.get('users').forEach(user => {
+        companyRating = companyRating + user.get('rating');
+    });
+    companyRating = companyRating/(company.get('users').size)^0;
 
     const memberItems = !isActive ? null :
-        company.get('users').map(user => (
-            <NavLink
-                to={ `${ROUTES.USER_RATING}?id=${user.get('id')}` }
-                className={ styles.employBox }
-                key={ user.get('id') }
-            >
-                <div className={ styles.employMain }>
-                    <AvatarComponent
-                        avatar={ user.get('id') }
-                        className={ styles.avatar }
-                    />
-                    <span className={ styles.employTitle }>
+        company.get('users').map(user => {
+            return (
+                <NavLink
+                    to={ `${ROUTES.USER_RATING}?id=${user.get('id')}` }
+                    className={ styles.employBox }
+                    key={ user.get('id') }
+                >
+                    <div className={ styles.employMain }>
+                        <AvatarComponent
+                            avatar={ user.get('id') }
+                            className={ styles.avatar }
+                        />
+                        <span className={ styles.employTitle }>
                         { user.get('name') }
                     </span>
-                </div>
-                <RatingComponent
-                    className={ styles.rating }
-                    rating={ 10 || user.get('rating') } // TODO fix that!
-                />
-            </NavLink>
-        ));
+                    </div>
+                    <RatingComponent
+                        className={ styles.rating }
+                        rating={ user.get('rating') }
+                    />
+                </NavLink>
+            );
+        });
 
     return (
         <div>
@@ -47,7 +54,7 @@ const CompanyListItemComponent = ( props ) => {
                 </span>
                 <RatingComponent
                     className={ styles.rating }
-                    rating={ 10 || company.get('rating') } // TODO fix that!
+                    rating={ companyRating }
                 />
             </div>
             { isActive &&
