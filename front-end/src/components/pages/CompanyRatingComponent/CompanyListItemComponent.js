@@ -20,7 +20,7 @@ const CompanyListItemComponent = ( props ) => {
             >
                 <div className={ styles.employMain }>
                     <AvatarComponent
-                        avatar={ user.get('avatar') }
+                        avatar={ user.get('id') }
                         className={ styles.avatar }
                     />
                     <span className={ styles.employTitle }>

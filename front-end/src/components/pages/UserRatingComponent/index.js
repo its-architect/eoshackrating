@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import styles from './styles.scss';
-import { AvatarComponent, RatingComponent, SpinnerComponent } from 'components/shared';
+import { AvatarComponent, RatingComponent } from 'components/shared';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 import Chart from 'chart.js';
+import { SpinnerComponent } from 'components/shared';
 
 const DATA_ID = {
     ACTIVITY: 'activity'
@@ -30,7 +31,7 @@ class UserRatingComponent extends PureComponent {
                 data.push(activity.get('overall'));
             });
         }
-        return new Chart(this.state.chartRef, {
+        const chart = new Chart(this.state.chartRef, {
             type: 'line',
             data: {
                 labels,
@@ -97,7 +98,7 @@ class UserRatingComponent extends PureComponent {
                     <div className={ styles.avatarBox }>
                         <AvatarComponent
                             className={ styles.avatar }
-                            avatar={ user ? user.get('avatar') : null }
+                            avatar={ user ? user.get('id') : null }
                         />
                         { user &&
                         <div className={ classNames(styles.ratingBox, styles.hideOnDesktop) }>

@@ -10,18 +10,20 @@ const initialState = fromJS(
 );
 
 export default ( state = initialState, action ) => {
-    switch (action.type) {
+    switch ( action.type ) {
         case types.FETCH_COMPANIES_REQUEST:
             return state
                 .setIn([ 'status' ], Map({ isFetching: action.type }));
         case types.FETCH_COMPANIES_SUCCESS:
-            const companies = action.payload.reduce(
+            const filteredItems = action.payload.filter(company => company.users.length > 0);
+            const cleanItems = filteredItems.map(company => ({ ...company, users: company.users.filter(user => user.rating > 0) }));
+            const companies = cleanItems.reduce(
                 ( acc, item ) => acc.set(item.id, fromJS(item)),
                 Map()
             );
 
             return state
-                .updateIn([ 'allIds' ], ids => ids.union(action.payload.map(item => item.id)))
+                .updateIn([ 'allIds' ], ids => ids.union(cleanItems.map(item => item.id)))
                 .updateIn([ 'byId' ], byId => byId.merge(companies))
                 .setIn([ 'status' ], Map({ success: action.type }));
         case types.FETCH_COMPANIES_ERROR:
