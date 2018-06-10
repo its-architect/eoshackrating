@@ -1,11 +1,15 @@
 import React, { Fragment } from 'react';
-import { FooterComponent, HeaderComponent, MainComponent } from 'components/layout';
+import {
+    HeaderContainer,
+    MainContainer,
+}                           from 'containers';
+import { FooterComponent } from 'components/layout';
 import './styles.scss';
 
 const AppComponent = () => (
     <Fragment>
-        <HeaderComponent />
-        <MainComponent />
+        <HeaderContainer />
+        <MainContainer />
         <FooterComponent />
     </Fragment>
 );
