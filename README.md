@@ -1,4 +1,4 @@
-# DAR - Decentralized Automated Rating of IT Sphere
+# DAR - Decentralized Autonomus Rating of IT Sphere
 Rating system on EOS Hackathon
 
 ## WE HAVE AGREED THAT:
