@@ -15,8 +15,8 @@ export default ( state = initialState, action ) => {
         case types.GET_USER_SUCCESS:
             const user = action.payload;
             return state
-                .updateIn([ 'allIds' ], ids => ids.union([user.id]))
-                .setIn([ 'byId', user.id ], fromJS(user))
+                .updateIn([ 'allIds' ], ids => ids.union([ user.id ]))
+                .setIn([ 'byId', user.id ], fromJS({ ...user, company: user.project_name }))
                 .setIn([ 'status' ], Map({ success: action.type }));
         case types.GET_USER_ERROR:
             return state

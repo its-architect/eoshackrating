@@ -22,11 +22,7 @@ export const getUser = ( action$, state ) => epicCreator(
     ( { id } ) => observer => {
         const subscription = services
             .getUserRequest(id)
-            .map(( { response } ) => actions.getUserSuccess({
-                ...response.user,
-                company: response.project.name,
-                activities: response.activities
-            }))
+            .map(( { response } ) => actions.getUserSuccess(response))
             .catch(error => of(actions.getUserError(
                 sharedMappers.mapError(error)
             )))
