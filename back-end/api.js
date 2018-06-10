@@ -56,13 +56,7 @@ router.all('/projects', async (req, res, next) => {
         const clone_project = { ...project };
 
         clone_project.users = Object.values(data.users)
-        .filter(user => user.project_id === project.id)
-        .map(user => {
-            const user_activities = data.activities
-            .filter(({ project_id, user_id }) => ((project.id === project_id) && (user.id === user_id)));
-
-            return { ...user, activities: user_activities }
-        });
+        .filter(user => user.project_id === project.id);
 
         if (clone_project.users.length > 0) {
             clone_project.rating = clone_project.users.reduce((a,b) => a+b, 0) / clone_project.users.length;
