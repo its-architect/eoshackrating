@@ -1,4 +1,4 @@
-# EOS Hackathon - Rating IT Sphere
+# DAR - Decentralized Automated Rating of IT Sphere
 Rating system on EOS Hackathon
 
 ## WE HAVE AGREED THAT:
