@@ -4,7 +4,12 @@
         box-sizing: border-box;
         display: grid;
         grid-template-columns: auto 40px;
-        grid-template-rows: $header-height 0 auto 30px;
+        @include mobile {
+            grid-template-rows: 55px 0 auto 30px;
+        }
+        @include desktop {
+            grid-template-rows: 70px 0 auto 30px;
+        }
         grid-template-areas:
                 "header header"
                 "notifications notifications"

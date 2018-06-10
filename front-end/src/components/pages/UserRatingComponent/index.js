@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import styles from './styles.scss';
-import { AvatarComponent, RatingComponent } from 'components/shared';
+import { AvatarComponent, RatingComponent, SpinnerComponent } from 'components/shared';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 import Chart from 'chart.js';
-import { SpinnerComponent } from 'components/shared';
 
 const DATA_ID = {
     ACTIVITY: 'activity'
@@ -28,10 +27,10 @@ class UserRatingComponent extends PureComponent {
             this.props.user.get('activities').forEach(activity => {
                 const date = new Date(activity.get('time_slot'));
                 labels.push(date.getHours());
-                data.push(activity.get('active_time'));
+                data.push(activity.get('overall'));
             });
         }
-        const chart = new Chart(this.state.chartRef, {
+        return new Chart(this.state.chartRef, {
             type: 'line',
             data: {
                 labels,

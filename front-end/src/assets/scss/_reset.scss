@@ -1,3 +1,12 @@
+body {
+    color: $color-back;
+    line-height: 1.8;
+    font-size: 16px;
+}
+body, button, input, optgroup, select, textarea {
+    font-family: Circle, sans-serif;
+}
+
 a {
     color: $color-primary-1;
     text-decoration: underline;
@@ -15,9 +24,9 @@ button {
 h1 {
     margin: 20px 0 20px 0;
     font-weight: 800;
-    font-size: 32px;
+    font-size: 30px;
     @include desktop {
-        font-size: 35px;
+        font-size: 34px;
     }
 }
 

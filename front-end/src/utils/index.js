@@ -1,7 +1,7 @@
-import parseQuery            from './parseQuery';
-import toQuery               from './toQuery';
+import parseQuery from './parseQuery';
+import getTimeFromStyle from './getTimeFromStyle';
 
 export {
-    toQuery,
+    getTimeFromStyle,
     parseQuery,
 };

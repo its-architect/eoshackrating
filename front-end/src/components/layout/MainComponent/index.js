@@ -5,6 +5,7 @@ import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { UserRatingContainer, CompanyRatingContainer } from 'containers/pages';
+import { getTimeFromStyle } from 'utils';
 
 class MainComponent extends PureComponent {
     render() {
@@ -22,7 +23,7 @@ class MainComponent extends PureComponent {
                                     exit: styles.pageExit,
                                     exitActive: styles.pageExitActive,
                                 } }
-                                timeout={ (+styles.timeout.slice(0, -1)) * 1000 }
+                                timeout={ getTimeFromStyle(styles.timeout) }
                             >
                                 <Switch location={ location }>
                                     <Route
