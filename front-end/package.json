@@ -67,7 +67,7 @@
         "history": "^4.7.2",
         "immutable": "^3.8.2",
         "intl": "^1.2.5",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.13",
         "normalize-scss": "^7.0.0",
         "pm2": "^2.10.1",
         "prop-types": "^15.6.0",
